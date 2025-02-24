@@ -1,0 +1,31 @@
+public interface PaymentProcessor {
+    void processPayment(double amount);
+}
+
+
+public class ThirdPartyPayment {
+    void makePayment(double amount){
+        System.out.println("Transaction of $"+amount+" completed");
+    }
+}
+
+
+public class PaymentAdapter implements PaymentProcessor{
+    private ThirdPartyPayment thirdPartyPayment;
+    public PaymentAdapter(ThirdPartyPayment thirdPartyPayment){
+        this.thirdPartyPayment=thirdPartyPayment;
+    }
+
+    @Override
+    public void processPayment(double amount) {
+        thirdPartyPayment.makePayment(amount);
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        ThirdPartyPayment thirdPartyPayment=new ThirdPartyPayment();
+        PaymentProcessor adapter=new PaymentAdapter(thirdPartyPayment);
+        adapter.processPayment(120);
+    }
+}
