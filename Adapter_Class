@@ -1,0 +1,35 @@
+public interface Pizza {
+    void bun();
+    void toppings();
+}
+
+public class CtgStylePizza {
+    public void sausage(){
+        System.out.println("Sausage included");
+    }
+    public void bread(){
+        System.out.println("Bread included");
+    }
+}
+
+
+public class PizzaAdapter extends CtgStylePizza implements Pizza{
+    @Override
+    public void bun() {
+        this.bread();
+    }
+
+    @Override
+    public void toppings() {
+        this.sausage();
+    }
+}
+
+
+public class Main {
+    public static void main(String[]args){
+        Pizza adapter= new PizzaAdapter();
+        adapter.toppings();
+        adapter.bun();
+    }
+}
