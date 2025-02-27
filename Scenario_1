@@ -1,0 +1,33 @@
+public class DeviceManager {
+    private static DeviceManager deviceManager;
+    private DeviceManager(){
+
+    }
+    public static DeviceManager getInstance(){
+        if (deviceManager==null) deviceManager=new DeviceManager();
+        return deviceManager;
+    }
+    public void smartLight(boolean a){
+        if(a) System.out.println("Light on");
+        else System.out.println("Light off");
+    }
+    public void smartAc(boolean a){
+        if(a) System.out.println("AC on");
+        else System.out.println("AC off");
+    }
+    public void securityCamera(boolean a){
+        if(a) System.out.println("Security camera on");
+        else System.out.println("Security camera off");
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        DeviceManager light=DeviceManager.getInstance();
+        light.smartLight(true);
+        DeviceManager ac=DeviceManager.getInstance();
+        ac.smartAc(false);
+        DeviceManager camera=DeviceManager.getInstance();
+        camera.securityCamera(true);
+    }
+}
