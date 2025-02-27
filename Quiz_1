@@ -1,0 +1,36 @@
+public class MusicPlayer {
+    private static MusicPlayer musicPlayer;
+    boolean status=false;
+    private MusicPlayer(){
+        System.out.println("Music Player Initialized...");
+    }
+    public static MusicPlayer getInstance(){
+        if (musicPlayer==null) musicPlayer=new MusicPlayer();
+        return musicPlayer;
+    }
+    public void playMusic(String s){
+        System.out.println("Playing: "+s);
+        status=true;
+    }
+    public void stopMusic(){
+        System.out.println("Stopped Music.");
+        status=false;
+    }
+    public void checkStatus(){
+        if(status) System.out.println("Music is currently playing.");
+        else System.out.println("Music is currently stopped");
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        MusicPlayer player=MusicPlayer.getInstance();
+        MusicPlayer player1=MusicPlayer.getInstance();
+
+        player.playMusic("Shape of you");
+        player1.stopMusic();
+        player.checkStatus();
+
+        System.out.println("\nAre both MusicPlayer are same?"+(player1=player));
+    }
+}
