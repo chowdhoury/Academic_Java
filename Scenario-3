@@ -1,0 +1,25 @@
+public class PrintManager {
+    private static PrintManager printManager;
+    private PrintManager(){
+
+    }
+    public static PrintManager getInstance(){
+        if (printManager==null) printManager=new PrintManager();
+        return printManager;
+    }
+
+    public void print(String s){
+        System.out.println(s);
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        PrintManager maidul=PrintManager.getInstance();
+        maidul.print("Maidul Doc is Printing");
+        PrintManager arnob=PrintManager.getInstance();
+        arnob.print("Arnob Doc is Printing");
+        PrintManager akash=PrintManager.getInstance();
+        akash.print("Akash Doc is Printing");
+    }
+}
