@@ -1,0 +1,64 @@
+public interface Document {
+    void formate(String s);
+}
+
+public class Docx {
+    void fomateHobe(String s){
+        System.out.println("Ami to docx naki? : "+s);
+    }
+}
+
+public class Txt {
+    void aitaKiHobe(String s){
+        System.out.println("Amar kida? :"+s);
+    }
+}
+
+public class Pdf {
+    void amarPoricoyKi(String s){
+        System.out.println("Ami hoilam: "+s);
+    }
+}
+
+public class UniversalAdapter implements Document{
+    private Docx docx;
+    public UniversalAdapter(Docx docx){
+        this.docx=docx;
+        txt=null;
+        pdf=null;
+    }
+    private Txt txt;
+    public UniversalAdapter(Txt txt){
+        this.txt=txt;
+        docx=null;
+        pdf=null;
+    }
+    private Pdf pdf;
+    public UniversalAdapter(Pdf pdf){
+        this.pdf=pdf;
+        docx=null;
+        txt=null;
+    }
+    @Override
+    public void formate(String s) {
+        if (docx!=null) docx.fomateHobe(s);
+        if (pdf!=null) pdf.amarPoricoyKi(s);
+        if (txt!=null) txt.aitaKiHobe(s);
+
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        Docx docx=new Docx();
+        Pdf pdf=new Pdf();
+        Txt txt=new Txt();
+
+        Document adapter=new UniversalAdapter(docx);
+        adapter.formate("Ha, Ami docx");
+        Document adapter1=new UniversalAdapter(pdf);
+        adapter1.formate("Pdf");
+        Document adapter2=new UniversalAdapter(txt);
+        adapter2.formate("Ami txt");
+    }
+}
