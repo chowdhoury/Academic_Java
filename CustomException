@@ -1,0 +1,30 @@
+//package Exception;
+
+public class JavaShikharException extends Exception{
+    public JavaShikharException (String message){
+        super(message);
+    }
+    public JavaShikharException(){
+
+    }
+
+    void validatePorashuna(int age) throws JavaShikharException{
+        if(age < 20){
+            throw new JavaShikharException("Java Shikhar Boyosh hoy nai!");
+        }else {
+            System.out.println("Good to go!");
+        }
+    }
+}
+
+class abc{
+    public static void main(String[] args) {
+        JavaShikharException jv = new JavaShikharException();
+        try{
+            jv.validatePorashuna(14);
+        }catch (JavaShikharException e){
+            System.out.println(e);
+        }
+
+    }
+}
