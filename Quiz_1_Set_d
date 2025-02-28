@@ -1,0 +1,48 @@
+public class ScoreBoardManager {
+    private static ScoreBoardManager scoreBoardManager;
+    private int atm,btm;
+    private ScoreBoardManager()
+    {
+        System.out.println("LaLiga Scoreboard Initialized...");
+    }
+    public static ScoreBoardManager getInstance(){
+        if (scoreBoardManager==null) scoreBoardManager=new ScoreBoardManager();
+        return scoreBoardManager;
+    }
+    public void updateScore(String s,int a){
+        if(s.equals("Team A")) atm=a;
+        else btm=a;
+        System.out.println("Score Update: "+s+" Scored "+a+" Goal(s)");
+    }
+    public void getCurrentScore(){
+        System.out.println("Current Score: Team A "+atm+" - Team B "+btm);
+    }
+    public void resetScoreboard(){
+        System.out.println("Scoreboard reset for the next match.");
+        atm=0;
+        btm=0;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ScoreBoardManager scoreboard1 = ScoreBoardManager.getInstance();
+        ScoreBoardManager scoreboard2 = ScoreBoardManager.getInstance();
+
+        // Updating scores from different references
+        scoreboard1.updateScore("Team A", 1);
+        scoreboard2.updateScore("Team B", 2);
+
+        scoreboard1.getCurrentScore(); // Should show "Team A 1 - Team B 2"
+
+        scoreboard2.updateScore("Team A", 1);
+        scoreboard1.getCurrentScore(); // Should show "Team A 2 - Team B 2"
+
+        // Resetting scoreboard
+        scoreboard2.resetScoreboard();
+        scoreboard1.getCurrentScore(); // Should show "Team A 0 - Team B 0"
+
+        // Verifying Singleton behavior
+        System.out.println("\nAre both ScoreboardManager instances the same? " + (scoreboard1 == scoreboard2));
+    }
+}
