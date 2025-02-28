@@ -1,0 +1,23 @@
+public interface Restudent {
+    void processOrder(String s);
+}
+
+public class OhSoSpeacial {
+    void sendOrderToCloud(String item){
+        System.out.println(item);
+    }
+}
+
+public class OhSoSpeacialAdapter extends OhSoSpeacial implements Restudent{
+    @Override
+    public void processOrder(String s) {
+        this.sendOrderToCloud(s);
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        Restudent adapter=new OhSoSpeacialAdapter();
+        adapter.processOrder("How much time needed to deliver my order");
+    }
+}
