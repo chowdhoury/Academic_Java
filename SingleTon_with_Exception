@@ -1,0 +1,49 @@
+public class TicketOverbookingException extends Exception {
+    public TicketOverbookingException(String message) {
+        super(message);
+    }
+}
+
+public class TicketManager {
+    private static TicketManager ticketManager;
+    private int ticket=100;
+    private TicketManager()
+    {
+        System.out.println("Ticket Manager Initialized...");
+    }
+    public static TicketManager getInstance()
+    {
+        if (ticketManager==null) ticketManager=new TicketManager();
+        return ticketManager;
+    }
+    public void bookTicket(String destination,int amount) throws TicketOverbookingException
+    {
+        if (ticket<amount) throw new TicketOverbookingException("Requested "+amount+" tickets, but only "+ticket+" tickets are available.");
+        else
+        {
+            System.out.println(destination+" successfully booked "+amount+" tickets.");
+            ticket-=amount;
+        }
+    }
+    public void getBookingStatus()
+    {
+        System.out.println("Ticked booked: "+(100-ticket)+", Ticket remaining: "+ticket);
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        TicketManager manager=TicketManager.getInstance();
+        try{
+            manager.bookTicket("Fan1",30);
+            manager.getBookingStatus();
+
+            manager.bookTicket("Fan2",50);
+            manager.getBookingStatus();
+
+            manager.bookTicket("Fan3",40);
+        }catch (TicketOverbookingException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
