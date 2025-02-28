@@ -1,0 +1,28 @@
+public class Fail extends Exception{
+    public Fail(String a){
+        super(a);
+    }
+}
+
+public class ResultValidation {
+    public void ckResult(int mark) throws Fail{
+        if(mark<40) throw new Fail("Hahaha");
+        else System.out.println("Well done my boys");
+    }
+}
+
+public class Main {
+    public static void main(String[]args){
+        ResultValidation r=new ResultValidation();
+        try{
+            r.ckResult(33);
+        }catch (Fail e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            r.ckResult(60);
+        }catch (Fail e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
