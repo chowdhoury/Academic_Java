@@ -1,0 +1,91 @@
+public class Main {
+    public static void main(String[]args){
+        SmartHome smartHome=new SmartHome();
+        smartHome.turnOn();
+        smartHome.turnOff();
+    }
+}
+
+public class SmartHome{
+    Device light;
+    Device heating;
+    Device ac;
+    Device cc;
+    Device mp;
+    public SmartHome(){
+        this.light=new Lights();
+        this.heating=new Heating();
+        this.ac=new AirConditionar();
+        this.cc=new SecurityCameras();
+        this.mp=new MediaPlayer();
+    }
+    public void turnOn(){
+        light.turnOn();
+        heating.turnOn();
+        ac.turnOn();
+        cc.turnOn();
+        mp.turnOn();
+    }
+    public void turnOff(){
+        light.turnOff();
+        heating.turnOff();
+        ac.turnOff();
+        cc.turnOff();
+        mp.turnOff();
+    }
+}
+
+public interface Device{
+    public void turnOn();
+    public void turnOff();
+}
+
+public class Lights implements Device{
+    @Override
+    public void turnOn() {
+        System.out.println("Lights are turned on");
+    }
+    public void turnOff() {
+        System.out.println("Lights are turned off");
+    }
+}
+
+public class Heating implements Device{
+    @Override
+    public void turnOn() {
+        System.out.println("Heating turned on");
+    }
+    public void turnOff() {
+        System.out.println("Heating turned off");
+    }
+}
+
+public class AirConditionar implements Device{
+    @Override
+    public void turnOn() {
+        System.out.println("AC turned on");
+    }
+    public void turnOff() {
+        System.out.println("AC turned off");
+    }
+}
+
+public class SecurityCameras implements Device{
+    @Override
+    public void turnOn() {
+        System.out.println("CC camera turned on");
+    }
+    public void turnOff() {
+        System.out.println("CC camera turned off");
+    }
+}
+
+public class MediaPlayer implements Device{
+    @Override
+    public void turnOn() {
+        System.out.println("Media Player turned on");
+    }
+    public void turnOff() {
+        System.out.println("Media Player turned off");
+    }
+}
