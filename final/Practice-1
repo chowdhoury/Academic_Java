@@ -1,0 +1,45 @@
+public class Main {
+    public static void main(String[]args){
+        BookTicket bookTicket=new BookTicket();
+        bookTicket.book("Raihan","mdr8077@gmail.com","Resist Hasina","36th July");
+    }
+    
+    
+}
+
+public class BookTicket{
+    public void book(String name,String mail,String movie,String time){
+        UserProfile user1= new UserProfile()
+        user1.updateName(name);
+        user1.updateMail(mail);
+        Movie movie1=new Movie();
+        movie1.selectMovie(movie);
+        movie1.selectTime(time);
+        new Payment().process();
+    }
+}
+
+public class UserProfile{
+    public void updateName(String name){
+        System.out.println("Welcome "+ name);
+    }
+    public void updateMail(String mail){
+        System.out.println("Your mail is "+ mail);
+    }
+}
+
+public class Movie{
+    public void selectMovie(String movie){
+        System.out.println("Movie name "+ movie);
+    }
+
+    public void selectTime(String time){
+        System.out.println("Movie time "+ time);
+    }
+}
+
+public class Payment{
+    public void process(){
+        System.out.println("Payment processed");
+    }
+}
